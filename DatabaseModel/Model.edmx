@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BorsaOdevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblAlici">
+          <Key>
+            <PropertyRef Name="AliciID" />
+          </Key>
+          <Property Name="AliciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AliciPara" Type="int" />
+          <Property Name="AlimBaslangic" Type="date" />
+          <Property Name="AlimBitis" Type="date" />
+          <Property Name="Ad" Type="nchar" MaxLength="10" />
+          <Property Name="Soyad" Type="nchar" MaxLength="10" />
+          <Property Name="Tc" Type="int" />
+          <Property Name="Telefon" Type="int" />
+          <Property Name="Email" Type="nchar" MaxLength="10" />
+          <Property Name="Adres" Type="nchar" MaxLength="10" />
+          <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TblKullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nchar" MaxLength="25" />
+          <Property Name="Soyad" Type="nchar" MaxLength="25" />
+          <Property Name="KullaniciAdi" Type="nchar" MaxLength="10" />
+          <Property Name="Sifre" Type="nchar" MaxLength="10" />
+          <Property Name="Tc" Type="int" />
+          <Property Name="Telefon" Type="int" />
+          <Property Name="Email" Type="nchar" MaxLength="50" />
+          <Property Name="Adres" Type="nchar" MaxLength="50" />
+          <Property Name="Rol" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TblParaOnay">
+          <Key>
+            <PropertyRef Name="ParaOnayID" />
+          </Key>
+          <Property Name="ParaOnayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aliciID" Type="int" />
+          <Property Name="AliciPara" Type="int" />
+        </EntityType>
+        <EntityType Name="TblSatici">
+          <Key>
+            <PropertyRef Name="SaticiID" />
+          </Key>
+          <Property Name="SaticiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaticiPara" Type="int" />
+          <Property Name="Ad" Type="nchar" MaxLength="10" />
+          <Property Name="Soyad" Type="nchar" MaxLength="10" />
+          <Property Name="Tc" Type="int" />
+          <Property Name="Telefon" Type="int" />
+          <Property Name="Email" Type="nchar" MaxLength="10" />
+          <Property Name="Adres" Type="nchar" MaxLength="10" />
+          <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaticiID" Type="int" />
+          <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+          <Property Name="UrunMiktar" Type="int" />
+          <Property Name="UrunSatisBaslangic" Type="date" />
+          <Property Name="UrunSatisBitis" Type="date" />
+          <Property Name="UrunFiyat" Type="int" />
+        </EntityType>
+        <EntityType Name="TblUrunOnay">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaticiID" Type="int" />
+          <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+          <Property Name="UrunMiktar" Type="int" />
+          <Property Name="UrunSatisBaslangic" Type="date" />
+          <Property Name="UrunSatisBitis" Type="date" />
+          <Property Name="UrunFiyat" Type="int" />
+        </EntityType>
+        <Association Name="FK_TblParaOnay_TblAlici">
+          <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
+          <End Role="TblParaOnay" Type="Self.TblParaOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblParaOnay">
+              <PropertyRef Name="aliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunOnay_TblSatici">
+          <End Role="TblSatici" Type="Self.TblSatici" Multiplicity="0..1" />
+          <End Role="TblUrunOnay" Type="Self.TblUrunOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblSatici">
+              <PropertyRef Name="SaticiID" />
+            </Principal>
+            <Dependent Role="TblUrunOnay">
+              <PropertyRef Name="SaticiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BorsaOdevModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunOnay" EntityType="Self.TblUrunOnay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="Self.FK_TblParaOnay_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlici" />
+            <End Role="TblParaOnay" EntitySet="TblParaOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunOnay_TblSatici" Association="Self.FK_TblUrunOnay_TblSatici">
+            <End Role="TblSatici" EntitySet="TblSatici" />
+            <End Role="TblUrunOnay" EntitySet="TblUrunOnay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BorsaOdevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BorsaOdevEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="sysdiagrams" EntityType="BorsaOdevModel.sysdiagram" />
+          <EntitySet Name="TblAlicis" EntityType="BorsaOdevModel.TblAlici" />
+          <EntitySet Name="TblKullanicis" EntityType="BorsaOdevModel.TblKullanici" />
+          <EntitySet Name="TblSaticis" EntityType="BorsaOdevModel.TblSatici" />
+          <EntitySet Name="TblUruns" EntityType="BorsaOdevModel.TblUrun" />
+          <EntitySet Name="TblUrunOnays" EntityType="BorsaOdevModel.TblUrunOnay" />
+          <AssociationSet Name="FK_TblUrunOnay_TblSatici" Association="BorsaOdevModel.FK_TblUrunOnay_TblSatici">
+            <End Role="TblSatici" EntitySet="TblSaticis" />
+            <End Role="TblUrunOnay" EntitySet="TblUrunOnays" />
+          </AssociationSet>
+          <EntitySet Name="TblParaOnays" EntityType="BorsaOdevModel.TblParaOnay" />
+          <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="BorsaOdevModel.FK_TblParaOnay_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlicis" />
+            <End Role="TblParaOnay" EntitySet="TblParaOnays" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TblAlici">
+          <Key>
+            <PropertyRef Name="AliciID" />
+          </Key>
+          <Property Name="AliciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AliciPara" Type="Int32" />
+          <Property Name="AlimBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="AlimBitis" Type="DateTime" Precision="0" />
+          <Property Name="Ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Tc" Type="Int32" />
+          <Property Name="Telefon" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TblParaOnays" Relationship="BorsaOdevModel.FK_TblParaOnay_TblAlici" FromRole="TblAlici" ToRole="TblParaOnay" />
+        </EntityType>
+        <EntityType Name="TblKullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Tc" Type="Int32" />
+          <Property Name="Telefon" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Rol" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblSatici">
+          <Key>
+            <PropertyRef Name="SaticiID" />
+          </Key>
+          <Property Name="SaticiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaticiPara" Type="Int32" />
+          <NavigationProperty Name="TblUrunOnays" Relationship="BorsaOdevModel.FK_TblUrunOnay_TblSatici" FromRole="TblSatici" ToRole="TblUrunOnay" />
+          <Property Name="Ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Tc" Type="Int32" />
+          <Property Name="Telefon" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaticiID" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UrunMiktar" Type="Int32" />
+          <Property Name="UrunSatisBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="UrunSatisBitis" Type="DateTime" Precision="0" />
+          <Property Name="UrunFiyat" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TblUrunOnay">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaticiID" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UrunMiktar" Type="Int32" />
+          <Property Name="UrunSatisBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="UrunSatisBitis" Type="DateTime" Precision="0" />
+          <Property Name="UrunFiyat" Type="Int32" />
+          <NavigationProperty Name="TblSatici" Relationship="BorsaOdevModel.FK_TblUrunOnay_TblSatici" FromRole="TblUrunOnay" ToRole="TblSatici" />
+        </EntityType>
+        <Association Name="FK_TblUrunOnay_TblSatici">
+          <End Type="BorsaOdevModel.TblSatici" Role="TblSatici" Multiplicity="0..1" />
+          <End Type="BorsaOdevModel.TblUrunOnay" Role="TblUrunOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblSatici">
+              <PropertyRef Name="SaticiID" />
+            </Principal>
+            <Dependent Role="TblUrunOnay">
+              <PropertyRef Name="SaticiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblParaOnay">
+          <Key>
+            <PropertyRef Name="ParaOnayID" />
+          </Key>
+          <Property Name="ParaOnayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aliciID" Type="Int32" />
+          <Property Name="AliciPara" Type="Int32" />
+          <NavigationProperty Name="TblAlici" Relationship="BorsaOdevModel.FK_TblParaOnay_TblAlici" FromRole="TblParaOnay" ToRole="TblAlici" />
+        </EntityType>
+        <Association Name="FK_TblParaOnay_TblAlici">
+          <End Type="BorsaOdevModel.TblAlici" Role="TblAlici" Multiplicity="0..1" />
+          <End Type="BorsaOdevModel.TblParaOnay" Role="TblParaOnay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblParaOnay">
+              <PropertyRef Name="aliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BorsaOdevModelStoreContainer" CdmEntityContainer="BorsaOdevEntities" >
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BorsaOdevModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAlicis">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblAlici">
+              <MappingFragment StoreEntitySet="TblAlici">
+                <ScalarProperty Name="kullaniciad" ColumnName="kullaniciad" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="AlimBitis" ColumnName="AlimBitis" />
+                <ScalarProperty Name="AlimBaslangic" ColumnName="AlimBaslangic" />
+                <ScalarProperty Name="AliciPara" ColumnName="AliciPara" />
+                <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKullanicis">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblKullanici">
+              <MappingFragment StoreEntitySet="TblKullanici">
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSaticis">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblSatici">
+              <MappingFragment StoreEntitySet="TblSatici">
+                <ScalarProperty Name="kullaniciad" ColumnName="kullaniciad" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="SaticiPara" ColumnName="SaticiPara" />
+                <ScalarProperty Name="SaticiID" ColumnName="SaticiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUruns">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblUrun">
+              <MappingFragment StoreEntitySet="TblUrun">
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunSatisBitis" ColumnName="UrunSatisBitis" />
+                <ScalarProperty Name="UrunSatisBaslangic" ColumnName="UrunSatisBaslangic" />
+                <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="SaticiID" ColumnName="SaticiID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunOnays">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblUrunOnay">
+              <MappingFragment StoreEntitySet="TblUrunOnay">
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunSatisBitis" ColumnName="UrunSatisBitis" />
+                <ScalarProperty Name="UrunSatisBaslangic" ColumnName="UrunSatisBaslangic" />
+                <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="SaticiID" ColumnName="SaticiID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblParaOnays">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblParaOnay">
+              <MappingFragment StoreEntitySet="TblParaOnay">
+                <ScalarProperty Name="AliciPara" ColumnName="AliciPara" />
+                <ScalarProperty Name="aliciID" ColumnName="aliciID" />
+                <ScalarProperty Name="ParaOnayID" ColumnName="ParaOnayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

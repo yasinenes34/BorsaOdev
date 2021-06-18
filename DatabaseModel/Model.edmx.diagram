@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fab6759b75bf428db7daf200c6b0fea0" Name="Diagram1" >
+        <EntityTypeShape EntityType="BorsaOdevModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblAlici" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblKullanici" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblSatici" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblUrun" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblUrunOnay" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="BorsaOdevModel.FK_TblUrunOnay_TblSatici" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblParaOnay" Width="1.5" PointX="5" PointY="8.5" />
+        <AssociationConnector Association="BorsaOdevModel.FK_TblParaOnay_TblAlici" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
