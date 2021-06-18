@@ -31,6 +31,18 @@
           <Property Name="Adres" Type="nchar" MaxLength="10" />
           <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="TblAlimİstek">
+          <Key>
+            <PropertyRef Name="AlimID" />
+          </Key>
+          <Property Name="AlimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aliciid" Type="int" />
+          <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+          <Property Name="UrunMiktar" Type="int" />
+          <Property Name="AlimBaslangic" Type="date" />
+          <Property Name="AlimBitis" Type="date" />
+          <Property Name="UrunFiyat" Type="int" />
+        </EntityType>
         <EntityType Name="TblKullanici">
           <Key>
             <PropertyRef Name="KullaniciID" />
@@ -92,6 +104,18 @@
           <Property Name="UrunSatisBitis" Type="date" />
           <Property Name="UrunFiyat" Type="int" />
         </EntityType>
+        <Association Name="FK_TblAlimİstek_TblAlici">
+          <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
+          <End Role="TblAlimİstek" Type="Self.TblAlimİstek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblAlimİstek">
+              <PropertyRef Name="Aliciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblParaOnay_TblAlici">
           <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
           <End Role="TblParaOnay" Type="Self.TblParaOnay" Multiplicity="*" />
@@ -119,11 +143,16 @@
         <EntityContainer Name="BorsaOdevModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAlimİstek" EntityType="Self.TblAlimİstek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrunOnay" EntityType="Self.TblUrunOnay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="Self.FK_TblAlimİstek_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlici" />
+            <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="Self.FK_TblParaOnay_TblAlici">
             <End Role="TblAlici" EntitySet="TblAlici" />
             <End Role="TblParaOnay" EntitySet="TblParaOnay" />
@@ -153,6 +182,11 @@
             <End Role="TblAlici" EntitySet="TblAlicis" />
             <End Role="TblParaOnay" EntitySet="TblParaOnays" />
           </AssociationSet>
+          <EntitySet Name="TblAlimİstek" EntityType="BorsaOdevModel.TblAlimİstek" />
+          <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="BorsaOdevModel.FK_TblAlimİstek_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlicis" />
+            <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -180,6 +214,7 @@
           <Property Name="Adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="TblParaOnays" Relationship="BorsaOdevModel.FK_TblParaOnay_TblAlici" FromRole="TblAlici" ToRole="TblParaOnay" />
+          <NavigationProperty Name="TblAlimİstek" Relationship="BorsaOdevModel.FK_TblAlimİstek_TblAlici" FromRole="TblAlici" ToRole="TblAlimİstek" />
         </EntityType>
         <EntityType Name="TblKullanici">
           <Key>
@@ -266,6 +301,31 @@
             </Principal>
             <Dependent Role="TblParaOnay">
               <PropertyRef Name="aliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblAlimİstek">
+          <Key>
+            <PropertyRef Name="AlimID" />
+          </Key>
+          <Property Name="AlimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aliciid" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UrunMiktar" Type="Int32" />
+          <Property Name="AlimBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="AlimBitis" Type="DateTime" Precision="0" />
+          <Property Name="UrunFiyat" Type="Int32" />
+          <NavigationProperty Name="TblAlici" Relationship="BorsaOdevModel.FK_TblAlimİstek_TblAlici" FromRole="TblAlimİstek" ToRole="TblAlici" />
+        </EntityType>
+        <Association Name="FK_TblAlimİstek_TblAlici">
+          <End Type="BorsaOdevModel.TblAlici" Role="TblAlici" Multiplicity="0..1" />
+          <End Type="BorsaOdevModel.TblAlimİstek" Role="TblAlimİstek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblAlimİstek">
+              <PropertyRef Name="Aliciid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -366,6 +426,19 @@
                 <ScalarProperty Name="AliciPara" ColumnName="AliciPara" />
                 <ScalarProperty Name="aliciID" ColumnName="aliciID" />
                 <ScalarProperty Name="ParaOnayID" ColumnName="ParaOnayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAlimİstek">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblAlimİstek">
+              <MappingFragment StoreEntitySet="TblAlimİstek">
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="AlimBitis" ColumnName="AlimBitis" />
+                <ScalarProperty Name="AlimBaslangic" ColumnName="AlimBaslangic" />
+                <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="Aliciid" ColumnName="Aliciid" />
+                <ScalarProperty Name="AlimID" ColumnName="AlimID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

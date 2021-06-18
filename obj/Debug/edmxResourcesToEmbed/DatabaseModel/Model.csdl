@@ -16,6 +16,11 @@
       <End Role="TblAlici" EntitySet="TblAlicis" />
       <End Role="TblParaOnay" EntitySet="TblParaOnays" />
     </AssociationSet>
+    <EntitySet Name="TblAlimİstek" EntityType="BorsaOdevModel.TblAlimİstek" />
+    <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="BorsaOdevModel.FK_TblAlimİstek_TblAlici">
+      <End Role="TblAlici" EntitySet="TblAlicis" />
+      <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="sysdiagram">
     <Key>
@@ -43,6 +48,7 @@
     <Property Name="Adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="TblParaOnays" Relationship="BorsaOdevModel.FK_TblParaOnay_TblAlici" FromRole="TblAlici" ToRole="TblParaOnay" />
+    <NavigationProperty Name="TblAlimİstek" Relationship="BorsaOdevModel.FK_TblAlimİstek_TblAlici" FromRole="TblAlici" ToRole="TblAlimİstek" />
   </EntityType>
   <EntityType Name="TblKullanici">
     <Key>
@@ -129,6 +135,31 @@
       </Principal>
       <Dependent Role="TblParaOnay">
         <PropertyRef Name="aliciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblAlimİstek">
+    <Key>
+      <PropertyRef Name="AlimID" />
+    </Key>
+    <Property Name="AlimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aliciid" Type="Int32" />
+    <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UrunMiktar" Type="Int32" />
+    <Property Name="AlimBaslangic" Type="DateTime" Precision="0" />
+    <Property Name="AlimBitis" Type="DateTime" Precision="0" />
+    <Property Name="UrunFiyat" Type="Int32" />
+    <NavigationProperty Name="TblAlici" Relationship="BorsaOdevModel.FK_TblAlimİstek_TblAlici" FromRole="TblAlimİstek" ToRole="TblAlici" />
+  </EntityType>
+  <Association Name="FK_TblAlimİstek_TblAlici">
+    <End Type="BorsaOdevModel.TblAlici" Role="TblAlici" Multiplicity="0..1" />
+    <End Type="BorsaOdevModel.TblAlimİstek" Role="TblAlimİstek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAlici">
+        <PropertyRef Name="AliciID" />
+      </Principal>
+      <Dependent Role="TblAlimİstek">
+        <PropertyRef Name="Aliciid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

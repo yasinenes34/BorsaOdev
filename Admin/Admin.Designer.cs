@@ -34,6 +34,9 @@ namespace BorsaOdev.admin
             this.label1 = new System.Windows.Forms.Label();
             this.txtsaticiid = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txturunid = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txturunmiktar = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtfiyat = new System.Windows.Forms.TextBox();
@@ -47,16 +50,15 @@ namespace BorsaOdev.admin
             this.btnsatici = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnalici = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtaliciid = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.brncikis = new System.Windows.Forms.Button();
-            this.txturunid = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -120,6 +122,32 @@ namespace BorsaOdev.admin
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Satıcı İşlemleri";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(197, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 31);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Ürün listele";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txturunid
+            // 
+            this.txturunid.Location = new System.Drawing.Point(241, 99);
+            this.txturunid.Name = "txturunid";
+            this.txturunid.Size = new System.Drawing.Size(100, 20);
+            this.txturunid.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(177, 102);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Ürün ID:";
             // 
             // txturunmiktar
             // 
@@ -214,12 +242,12 @@ namespace BorsaOdev.admin
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnalici);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txtaliciid);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(456, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 100);
+            this.groupBox2.Size = new System.Drawing.Size(289, 97);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Alıcı İşlemleri";
@@ -234,21 +262,22 @@ namespace BorsaOdev.admin
             this.btnalici.UseVisualStyleBackColor = true;
             this.btnalici.Click += new System.EventHandler(this.btnalici_Click);
             // 
-            // textBox2
+            // txtaliciid
             // 
-            this.textBox2.Location = new System.Drawing.Point(33, 25);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtaliciid.Location = new System.Drawing.Point(33, 25);
+            this.txtaliciid.Name = "txtaliciid";
+            this.txtaliciid.Size = new System.Drawing.Size(100, 20);
+            this.txtaliciid.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(33, 51);
+            this.button1.Location = new System.Drawing.Point(36, 51);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 31);
             this.button1.TabIndex = 1;
             this.button1.Text = "Para Onay";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -269,37 +298,21 @@ namespace BorsaOdev.admin
             this.brncikis.UseVisualStyleBackColor = true;
             this.brncikis.Click += new System.EventHandler(this.brncikis_Click);
             // 
-            // txturunid
+            // dataGridView2
             // 
-            this.txturunid.Location = new System.Drawing.Point(241, 99);
-            this.txturunid.Name = "txturunid";
-            this.txturunid.Size = new System.Drawing.Size(100, 20);
-            this.txturunid.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(177, 102);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Ürün ID:";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(197, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 31);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Ürün listele";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 1);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(755, 150);
+            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick);
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 340);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.brncikis);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -312,6 +325,7 @@ namespace BorsaOdev.admin
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -324,7 +338,7 @@ namespace BorsaOdev.admin
         private System.Windows.Forms.TextBox txtsaticiid;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtaliciid;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnsatici;
@@ -343,5 +357,6 @@ namespace BorsaOdev.admin
         private System.Windows.Forms.TextBox txturunid;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

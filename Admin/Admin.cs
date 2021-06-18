@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,19 @@ namespace BorsaOdev.admin
         private void btnsatici_Click(object sender, EventArgs e)
         {
            dataGridView1.DataSource= db.TblUrunOnays.ToList();
+            dataGridView2.Visible = false;
+            dataGridView2.Enabled = false;
+            dataGridView1.Visible = true;
+            dataGridView1.Enabled = true;
         }
 
         private void btnalici_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = db.TblAlicis.ToList();
+            dataGridView2.DataSource = db.TblParaOnays.ToList();
+            dataGridView1.Visible = false;
+            dataGridView1.Enabled = false;
+            dataGridView2.Visible = true;
+            dataGridView2.Enabled = true;
         }
 
         private void brncikis_Click(object sender, EventArgs e)
@@ -93,6 +102,30 @@ namespace BorsaOdev.admin
         private void button2_Click(object sender, EventArgs e)
         {
            dataGridView1.DataSource= db.TblUruns.ToList();
+        }
+        public int para;
+        public int paraonayid;
+        private void dataGridView2_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            paraonayid =int.Parse( dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString());
+            txtaliciid.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+            para = int.Parse(dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TblAlici alici = new TblAlici();
+            int id = Convert.ToInt32(txtaliciid.Text);
+            alici.AliciPara = para;
+            
+             var std = db.TblAlicis.Where(p=>p.AliciID==id).First<TblAlici>();
+             std.AliciPara = para;
+             db.SaveChanges();
+            
+            MessageBox.Show("Para onaylandı");
+            var x = db.TblParaOnays.Find(paraonayid);
+            db.TblParaOnays.Remove(x);
+
         }
     }
 }

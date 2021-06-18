@@ -95,5 +95,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TblAlimİstek">
+      <EntityTypeMapping TypeName="BorsaOdevModel.TblAlimİstek">
+        <MappingFragment StoreEntitySet="TblAlimİstek">
+          <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+          <ScalarProperty Name="AlimBitis" ColumnName="AlimBitis" />
+          <ScalarProperty Name="AlimBaslangic" ColumnName="AlimBaslangic" />
+          <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="Aliciid" ColumnName="Aliciid" />
+          <ScalarProperty Name="AlimID" ColumnName="AlimID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -26,6 +26,18 @@
     <Property Name="Adres" Type="nchar" MaxLength="10" />
     <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="TblAlimİstek">
+    <Key>
+      <PropertyRef Name="AlimID" />
+    </Key>
+    <Property Name="AlimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aliciid" Type="int" />
+    <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+    <Property Name="UrunMiktar" Type="int" />
+    <Property Name="AlimBaslangic" Type="date" />
+    <Property Name="AlimBitis" Type="date" />
+    <Property Name="UrunFiyat" Type="int" />
+  </EntityType>
   <EntityType Name="TblKullanici">
     <Key>
       <PropertyRef Name="KullaniciID" />
@@ -87,6 +99,18 @@
     <Property Name="UrunSatisBitis" Type="date" />
     <Property Name="UrunFiyat" Type="int" />
   </EntityType>
+  <Association Name="FK_TblAlimİstek_TblAlici">
+    <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
+    <End Role="TblAlimİstek" Type="Self.TblAlimİstek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAlici">
+        <PropertyRef Name="AliciID" />
+      </Principal>
+      <Dependent Role="TblAlimİstek">
+        <PropertyRef Name="Aliciid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblParaOnay_TblAlici">
     <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
     <End Role="TblParaOnay" Type="Self.TblParaOnay" Multiplicity="*" />
@@ -114,11 +138,16 @@
   <EntityContainer Name="BorsaOdevModelStoreContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblAlimİstek" EntityType="Self.TblAlimİstek" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblUrunOnay" EntityType="Self.TblUrunOnay" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="Self.FK_TblAlimİstek_TblAlici">
+      <End Role="TblAlici" EntitySet="TblAlici" />
+      <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
+    </AssociationSet>
     <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="Self.FK_TblParaOnay_TblAlici">
       <End Role="TblAlici" EntitySet="TblAlici" />
       <End Role="TblParaOnay" EntitySet="TblParaOnay" />

@@ -32,5 +32,6 @@ namespace BorsaOdev.DatabaseModel
         public virtual DbSet<TblUrun> TblUruns { get; set; }
         public virtual DbSet<TblUrunOnay> TblUrunOnays { get; set; }
         public virtual DbSet<TblParaOnay> TblParaOnays { get; set; }
+        public virtual DbSet<TblAlimİstek> TblAlimİstek { get; set; }
     }
 }

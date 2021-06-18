@@ -20,42 +20,89 @@ namespace BorsaOdev.Alıcı
         BorsaOdevEntities db = new BorsaOdevEntities();
         private void Alici_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).ToList();
+           
         }
 
         private void btnparaekle_Click(object sender, EventArgs e)
         {
-           
             paraekle();
         }
+        int para;
+
         void paraekle()
         {
-            TblParaOnay alici = new TblParaOnay();
-            alici.aliciID =int.Parse( txtaliciid.Text);
-            alici.AliciPara =int.Parse(txtalicipara.Text);
-            db.TblParaOnays.Add(alici);
+            TblParaOnay alicionay = new TblParaOnay();
+            var alici= db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).FirstOrDefault();
+           para=int.Parse(txtalicipara.Text);
+            alicionay.aliciID=alici.AliciID;
+            alicionay.AliciPara = para;
+            db.TblParaOnays.Add(alicionay);
             db.SaveChanges();
             MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void btnalim_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = db.TblUruns.ToList();
+            alimistek();
+            alimkontrolet();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            txtaliciid.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            //txtalicipara.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+        TblAlimİstek alimIstek = new TblAlimİstek();
+        void alimistek()
+        {
+            var alici = db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).FirstOrDefault();
+            alimIstek.Aliciid = alici.AliciID;
+            alimIstek.UrunAdi = txturunadi.Text;
+            alimIstek.UrunFiyat = int.Parse(txturunfiyat.Text);
+            alimIstek.UrunMiktar = int.Parse(txturunmiktar.Text);
+            alimIstek.AlimBaslangic = baslangic.Value;
+            alimIstek.AlimBitis = bitis.Value;
+            db.TblAlimİstek.Add(alimIstek);
+            db.SaveChanges();
+            MessageBox.Show("Alım İsteği Gerçekleşti... ");
+
+        }
+        public int para1;
+        void  alimkontrolet()
+        {
+            //TblUrun urun = new TblUrun();
+            var urun = db.TblUruns.ToList();
+            var alimistek = db.TblAlimİstek.ToList();
+            var alicipara = db.TblAlicis.ToList();
+            foreach (var item in alicipara)
+            {
+                if (item.AliciPara>0)
+                {
+                     para1 = int.Parse(item.AliciPara.ToString());
+                }
+            }
+            MessageBox.Show(para1.ToString());
+            foreach (var item in urun)
+            {
+                foreach (var i in alimistek)
+                {
+                    if (item.UrunAdi == i.UrunAdi && item.UrunFiyat == i.UrunFiyat && item.UrunMiktar == i.UrunMiktar && item.UrunSatisBitis >= i.AlimBitis)
+                     {
+                        
+                        int uruntoplamfiyat =int.Parse(item.UrunMiktar.ToString())*int.Parse(item.UrunFiyat.ToString());
+                        MessageBox.Show(para1.ToString());
+                        if (para1>uruntoplamfiyat)
+                        {
+                            MessageBox.Show("Satış Gerçekleşti");
+                            
+                        }
+                        break;
+                    }
+                    
+                }
+               
+            }
+           
+
+
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = db.TblParaOnays.ToList();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = db.TblAlicis.ToList();
-        }
     }
 }
