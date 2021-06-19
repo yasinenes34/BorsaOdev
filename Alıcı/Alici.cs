@@ -73,36 +73,60 @@ namespace BorsaOdev.Alıcı
             var alicipara = db.TblAlicis.ToList();
             foreach (var item in alicipara)
             {
-                if (item.AliciPara>0)
+                if (item.AliciPara > 0)
                 {
-                     para1 = int.Parse(item.AliciPara.ToString());
+                    para1 = int.Parse(item.AliciPara.ToString());
                 }
             }
-            MessageBox.Show(para1.ToString());
+            bool bitir=false;
             foreach (var item in urun)
             {
+                if (bitir)
+                {
+                    break;
+                }
                 foreach (var i in alimistek)
                 {
-                    if (item.UrunAdi == i.UrunAdi && item.UrunFiyat == i.UrunFiyat && item.UrunMiktar == i.UrunMiktar && item.UrunSatisBitis >= i.AlimBitis)
-                     {
-                        
-                        int uruntoplamfiyat =int.Parse(item.UrunMiktar.ToString())*int.Parse(item.UrunFiyat.ToString());
-                        MessageBox.Show(para1.ToString());
-                        if (para1>uruntoplamfiyat)
+                    if (item.UrunAdi == i.UrunAdi && item.UrunFiyat == i.UrunFiyat && item.UrunMiktar >= i.UrunMiktar && item.UrunSatisBitis >= i.AlimBitis)
+                    {
+                        int uruntoplamfiyat = int.Parse(item.UrunMiktar.ToString()) * int.Parse(item.UrunFiyat.ToString());
+                        if (para1 > uruntoplamfiyat + (uruntoplamfiyat / 100))
                         {
+                            int idalim = i.AlimID;
+                            int idurun = item.UrunID;
+                            int aliciid =int.Parse( i.Aliciid.ToString());
+                            int saticiid = int.Parse(item.SaticiID.ToString());
+                            var silalim = db.TblAlimİstek.Find(idalim);
+                            var silurun = db.TblUruns.Find(idurun);
+                            var aliciparaguncelle = db.TblAlicis.Where(p => p.AliciID ==aliciid).First<TblAlici>();
+                            var saticiparaguncelle = db.TblSaticis.Where(p => p.SaticiID == saticiid).First<TblSatici>();
+                            var kasaguncelle = db.TblKasas.Where(p => p.KasaID == 1).First<TblKasa>();
+                            kasaguncelle.KasaPara += (uruntoplamfiyat * 1) / 100;
+                            saticiparaguncelle.SaticiPara += uruntoplamfiyat;
+                            aliciparaguncelle.AliciPara -= uruntoplamfiyat+(uruntoplamfiyat/100);
+                            db.TblAlimİstek.Remove(silalim);
+                            db.TblUruns.Remove(silurun);
+                            db.SaveChanges();
                             MessageBox.Show("Satış Gerçekleşti");
-                            
+                            bitir = true;
+                           
                         }
+                        
                         break;
                     }
-                    
+                   
+
                 }
                
             }
-           
+
 
 
         }
 
+        private void dataGridView2_CellMouseDoubleClick_1(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
+        }
     }
 }

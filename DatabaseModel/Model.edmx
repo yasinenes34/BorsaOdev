@@ -43,6 +43,13 @@
           <Property Name="AlimBitis" Type="date" />
           <Property Name="UrunFiyat" Type="int" />
         </EntityType>
+        <EntityType Name="TblKasa">
+          <Key>
+            <PropertyRef Name="KasaID" />
+          </Key>
+          <Property Name="KasaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KasaPara" Type="int" />
+        </EntityType>
         <EntityType Name="TblKullanici">
           <Key>
             <PropertyRef Name="KullaniciID" />
@@ -144,6 +151,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAlimİstek" EntityType="Self.TblAlimİstek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKasa" EntityType="Self.TblKasa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
@@ -187,6 +195,7 @@
             <End Role="TblAlici" EntitySet="TblAlicis" />
             <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
           </AssociationSet>
+          <EntitySet Name="TblKasas" EntityType="BorsaOdevModel.TblKasa" />
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -329,6 +338,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TblKasa">
+          <Key>
+            <PropertyRef Name="KasaID" />
+          </Key>
+          <Property Name="KasaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KasaPara" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -439,6 +455,14 @@
                 <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
                 <ScalarProperty Name="Aliciid" ColumnName="Aliciid" />
                 <ScalarProperty Name="AlimID" ColumnName="AlimID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKasas">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblKasa">
+              <MappingFragment StoreEntitySet="TblKasa">
+                <ScalarProperty Name="KasaPara" ColumnName="KasaPara" />
+                <ScalarProperty Name="KasaID" ColumnName="KasaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

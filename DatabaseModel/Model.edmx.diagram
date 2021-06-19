@@ -16,6 +16,7 @@
         <AssociationConnector Association="BorsaOdevModel.FK_TblParaOnay_TblAlici" />
         <EntityTypeShape EntityType="BorsaOdevModel.TblAlimİstek" Width="1.5" PointX="7.375" PointY="4.75" />
         <AssociationConnector Association="BorsaOdevModel.FK_TblAlimİstek_TblAlici" />
+        <EntityTypeShape EntityType="BorsaOdevModel.TblKasa" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

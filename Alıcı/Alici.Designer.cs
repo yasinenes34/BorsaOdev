@@ -33,6 +33,8 @@ namespace BorsaOdev.Alıcı
             this.txtalicipara = new System.Windows.Forms.TextBox();
             this.btnparaekle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txturunfiyat = new System.Windows.Forms.TextBox();
+            this.txturunadi = new System.Windows.Forms.TextBox();
             this.bitis = new System.Windows.Forms.DateTimePicker();
             this.baslangic = new System.Windows.Forms.DateTimePicker();
             this.btnalim = new System.Windows.Forms.Button();
@@ -44,8 +46,10 @@ namespace BorsaOdev.Alıcı
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.txturunadi = new System.Windows.Forms.TextBox();
-            this.txturunfiyat = new System.Windows.Forms.TextBox();
+            this.lblurunad = new System.Windows.Forms.Label();
+            this.lblurunmiktar = new System.Windows.Forms.Label();
+            this.lblurunfiyat = new System.Windows.Forms.Label();
+            this.satisbitis = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -96,6 +100,20 @@ namespace BorsaOdev.Alıcı
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alım İşlemleri";
+            // 
+            // txturunfiyat
+            // 
+            this.txturunfiyat.Location = new System.Drawing.Point(242, 71);
+            this.txturunfiyat.Name = "txturunfiyat";
+            this.txturunfiyat.Size = new System.Drawing.Size(100, 20);
+            this.txturunfiyat.TabIndex = 27;
+            // 
+            // txturunadi
+            // 
+            this.txturunadi.Location = new System.Drawing.Point(74, 75);
+            this.txturunadi.Name = "txturunadi";
+            this.txturunadi.Size = new System.Drawing.Size(100, 20);
+            this.txturunadi.TabIndex = 26;
             // 
             // bitis
             // 
@@ -192,26 +210,54 @@ namespace BorsaOdev.Alıcı
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(786, 150);
             this.dataGridView2.TabIndex = 22;
+            this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick_1);
             // 
-            // txturunadi
+            // lblurunad
             // 
-            this.txturunadi.Location = new System.Drawing.Point(74, 75);
-            this.txturunadi.Name = "txturunadi";
-            this.txturunadi.Size = new System.Drawing.Size(100, 20);
-            this.txturunadi.TabIndex = 26;
+            this.lblurunad.AutoSize = true;
+            this.lblurunad.Location = new System.Drawing.Point(177, 170);
+            this.lblurunad.Name = "lblurunad";
+            this.lblurunad.Size = new System.Drawing.Size(40, 13);
+            this.lblurunad.TabIndex = 23;
+            this.lblurunad.Text = "urunad";
             // 
-            // txturunfiyat
+            // lblurunmiktar
             // 
-            this.txturunfiyat.Location = new System.Drawing.Point(242, 71);
-            this.txturunfiyat.Name = "txturunfiyat";
-            this.txturunfiyat.Size = new System.Drawing.Size(100, 20);
-            this.txturunfiyat.TabIndex = 27;
+            this.lblurunmiktar.AutoSize = true;
+            this.lblurunmiktar.Location = new System.Drawing.Point(177, 186);
+            this.lblurunmiktar.Name = "lblurunmiktar";
+            this.lblurunmiktar.Size = new System.Drawing.Size(66, 13);
+            this.lblurunmiktar.TabIndex = 24;
+            this.lblurunmiktar.Text = "lnlurunmiktar";
+            // 
+            // lblurunfiyat
+            // 
+            this.lblurunfiyat.AutoSize = true;
+            this.lblurunfiyat.Location = new System.Drawing.Point(177, 204);
+            this.lblurunfiyat.Name = "lblurunfiyat";
+            this.lblurunfiyat.Size = new System.Drawing.Size(47, 13);
+            this.lblurunfiyat.TabIndex = 25;
+            this.lblurunfiyat.Text = "urunifyat";
+            this.lblurunfiyat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // satisbitis
+            // 
+            this.satisbitis.AutoSize = true;
+            this.satisbitis.Location = new System.Drawing.Point(177, 223);
+            this.satisbitis.Name = "satisbitis";
+            this.satisbitis.Size = new System.Drawing.Size(56, 13);
+            this.satisbitis.TabIndex = 26;
+            this.satisbitis.Text = "lblsatisbitis";
             // 
             // Alici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 311);
+            this.Controls.Add(this.satisbitis);
+            this.Controls.Add(this.lblurunfiyat);
+            this.Controls.Add(this.lblurunmiktar);
+            this.Controls.Add(this.lblurunad);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -224,6 +270,7 @@ namespace BorsaOdev.Alıcı
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -245,5 +292,9 @@ namespace BorsaOdev.Alıcı
         private System.Windows.Forms.DateTimePicker baslangic;
         private System.Windows.Forms.TextBox txturunfiyat;
         private System.Windows.Forms.TextBox txturunadi;
+        private System.Windows.Forms.Label lblurunad;
+        private System.Windows.Forms.Label lblurunmiktar;
+        private System.Windows.Forms.Label lblurunfiyat;
+        private System.Windows.Forms.Label satisbitis;
     }
 }

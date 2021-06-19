@@ -91,6 +91,9 @@
     <Compile Include="DatabaseModel\TblAlimİstek.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseModel\TblKasa.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModel\TblKullanici.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
