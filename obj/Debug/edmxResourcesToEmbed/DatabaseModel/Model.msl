@@ -108,5 +108,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TblKasas">
+      <EntityTypeMapping TypeName="BorsaOdevModel.TblKasa">
+        <MappingFragment StoreEntitySet="TblKasa">
+          <ScalarProperty Name="KasaPara" ColumnName="KasaPara" />
+          <ScalarProperty Name="KasaID" ColumnName="KasaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblAlinanUrunlers">
+      <EntityTypeMapping TypeName="BorsaOdevModel.TblAlinanUrunler">
+        <MappingFragment StoreEntitySet="TblAlinanUrunler">
+          <ScalarProperty Name="AlimBitis" ColumnName="AlimBitis" />
+          <ScalarProperty Name="AlimBaslangic" ColumnName="AlimBaslangic" />
+          <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+          <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+          <ScalarProperty Name="AlinanUrunID" ColumnName="AlinanUrunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblSatilanUruns">
+      <EntityTypeMapping TypeName="BorsaOdevModel.TblSatilanUrun">
+        <MappingFragment StoreEntitySet="TblSatilanUrun">
+          <ScalarProperty Name="UrunSatisBitis" ColumnName="UrunSatisBitis" />
+          <ScalarProperty Name="UrunSatisBaslangic" ColumnName="UrunSatisBaslangic" />
+          <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+          <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="SaticiID" ColumnName="SaticiID" />
+          <ScalarProperty Name="SatilanurunID" ColumnName="SatilanurunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

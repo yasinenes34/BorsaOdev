@@ -43,6 +43,18 @@
           <Property Name="AlimBitis" Type="date" />
           <Property Name="UrunFiyat" Type="int" />
         </EntityType>
+        <EntityType Name="TblAlinanUrunler">
+          <Key>
+            <PropertyRef Name="AlinanUrunID" />
+          </Key>
+          <Property Name="AlinanUrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AliciID" Type="int" />
+          <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+          <Property Name="UrunMiktar" Type="int" />
+          <Property Name="UrunFiyat" Type="int" />
+          <Property Name="AlimBaslangic" Type="date" />
+          <Property Name="AlimBitis" Type="date" />
+        </EntityType>
         <EntityType Name="TblKasa">
           <Key>
             <PropertyRef Name="KasaID" />
@@ -87,6 +99,18 @@
           <Property Name="Adres" Type="nchar" MaxLength="10" />
           <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="TblSatilanUrun">
+          <Key>
+            <PropertyRef Name="SatilanurunID" />
+          </Key>
+          <Property Name="SatilanurunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaticiID" Type="int" />
+          <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+          <Property Name="UrunMiktar" Type="int" />
+          <Property Name="UrunFiyat" Type="int" />
+          <Property Name="UrunSatisBaslangic" Type="date" />
+          <Property Name="UrunSatisBitis" Type="date" />
+        </EntityType>
         <EntityType Name="TblUrun">
           <Key>
             <PropertyRef Name="UrunID" />
@@ -123,6 +147,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblAlinanUrunler_TblAlici">
+          <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
+          <End Role="TblAlinanUrunler" Type="Self.TblAlinanUrunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblAlinanUrunler">
+              <PropertyRef Name="AliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblParaOnay_TblAlici">
           <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
           <End Role="TblParaOnay" Type="Self.TblParaOnay" Multiplicity="*" />
@@ -132,6 +168,18 @@
             </Principal>
             <Dependent Role="TblParaOnay">
               <PropertyRef Name="aliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSatilanUrun_TblSatici">
+          <End Role="TblSatici" Type="Self.TblSatici" Multiplicity="0..1" />
+          <End Role="TblSatilanUrun" Type="Self.TblSatilanUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblSatici">
+              <PropertyRef Name="SaticiID" />
+            </Principal>
+            <Dependent Role="TblSatilanUrun">
+              <PropertyRef Name="SaticiID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -151,19 +199,29 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAlimİstek" EntityType="Self.TblAlimİstek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAlinanUrunler" EntityType="Self.TblAlinanUrunler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKasa" EntityType="Self.TblKasa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSatilanUrun" EntityType="Self.TblSatilanUrun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrunOnay" EntityType="Self.TblUrunOnay" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="Self.FK_TblAlimİstek_TblAlici">
             <End Role="TblAlici" EntitySet="TblAlici" />
             <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblAlinanUrunler_TblAlici" Association="Self.FK_TblAlinanUrunler_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlici" />
+            <End Role="TblAlinanUrunler" EntitySet="TblAlinanUrunler" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="Self.FK_TblParaOnay_TblAlici">
             <End Role="TblAlici" EntitySet="TblAlici" />
             <End Role="TblParaOnay" EntitySet="TblParaOnay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSatilanUrun_TblSatici" Association="Self.FK_TblSatilanUrun_TblSatici">
+            <End Role="TblSatici" EntitySet="TblSatici" />
+            <End Role="TblSatilanUrun" EntitySet="TblSatilanUrun" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUrunOnay_TblSatici" Association="Self.FK_TblUrunOnay_TblSatici">
             <End Role="TblSatici" EntitySet="TblSatici" />
@@ -196,6 +254,16 @@
             <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
           </AssociationSet>
           <EntitySet Name="TblKasas" EntityType="BorsaOdevModel.TblKasa" />
+          <EntitySet Name="TblAlinanUrunlers" EntityType="BorsaOdevModel.TblAlinanUrunler" />
+          <EntitySet Name="TblSatilanUruns" EntityType="BorsaOdevModel.TblSatilanUrun" />
+          <AssociationSet Name="FK_TblAlinanUrunler_TblAlici" Association="BorsaOdevModel.FK_TblAlinanUrunler_TblAlici">
+            <End Role="TblAlici" EntitySet="TblAlicis" />
+            <End Role="TblAlinanUrunler" EntitySet="TblAlinanUrunlers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSatilanUrun_TblSatici" Association="BorsaOdevModel.FK_TblSatilanUrun_TblSatici">
+            <End Role="TblSatici" EntitySet="TblSaticis" />
+            <End Role="TblSatilanUrun" EntitySet="TblSatilanUruns" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -224,6 +292,7 @@
           <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="TblParaOnays" Relationship="BorsaOdevModel.FK_TblParaOnay_TblAlici" FromRole="TblAlici" ToRole="TblParaOnay" />
           <NavigationProperty Name="TblAlimİstek" Relationship="BorsaOdevModel.FK_TblAlimİstek_TblAlici" FromRole="TblAlici" ToRole="TblAlimİstek" />
+          <NavigationProperty Name="TblAlinanUrunlers" Relationship="BorsaOdevModel.FK_TblAlinanUrunler_TblAlici" FromRole="TblAlici" ToRole="TblAlinanUrunler" />
         </EntityType>
         <EntityType Name="TblKullanici">
           <Key>
@@ -254,6 +323,7 @@
           <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Adres" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="kullaniciad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TblSatilanUruns" Relationship="BorsaOdevModel.FK_TblSatilanUrun_TblSatici" FromRole="TblSatici" ToRole="TblSatilanUrun" />
         </EntityType>
         <EntityType Name="TblUrun">
           <Key>
@@ -345,6 +415,56 @@
           <Property Name="KasaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KasaPara" Type="Int32" />
         </EntityType>
+        <EntityType Name="TblAlinanUrunler">
+          <Key>
+            <PropertyRef Name="AlinanUrunID" />
+          </Key>
+          <Property Name="AlinanUrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AliciID" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UrunMiktar" Type="Int32" />
+          <Property Name="UrunFiyat" Type="Int32" />
+          <Property Name="AlimBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="AlimBitis" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblAlici" Relationship="BorsaOdevModel.FK_TblAlinanUrunler_TblAlici" FromRole="TblAlinanUrunler" ToRole="TblAlici" />
+        </EntityType>
+        <EntityType Name="TblSatilanUrun">
+          <Key>
+            <PropertyRef Name="SatilanurunID" />
+          </Key>
+          <Property Name="SatilanurunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaticiID" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UrunMiktar" Type="Int32" />
+          <Property Name="UrunFiyat" Type="Int32" />
+          <Property Name="UrunSatisBaslangic" Type="DateTime" Precision="0" />
+          <Property Name="UrunSatisBitis" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblSatici" Relationship="BorsaOdevModel.FK_TblSatilanUrun_TblSatici" FromRole="TblSatilanUrun" ToRole="TblSatici" />
+        </EntityType>
+        <Association Name="FK_TblAlinanUrunler_TblAlici">
+          <End Type="BorsaOdevModel.TblAlici" Role="TblAlici" Multiplicity="0..1" />
+          <End Type="BorsaOdevModel.TblAlinanUrunler" Role="TblAlinanUrunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblAlici">
+              <PropertyRef Name="AliciID" />
+            </Principal>
+            <Dependent Role="TblAlinanUrunler">
+              <PropertyRef Name="AliciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSatilanUrun_TblSatici">
+          <End Type="BorsaOdevModel.TblSatici" Role="TblSatici" Multiplicity="0..1" />
+          <End Type="BorsaOdevModel.TblSatilanUrun" Role="TblSatilanUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblSatici">
+              <PropertyRef Name="SaticiID" />
+            </Principal>
+            <Dependent Role="TblSatilanUrun">
+              <PropertyRef Name="SaticiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -463,6 +583,32 @@
               <MappingFragment StoreEntitySet="TblKasa">
                 <ScalarProperty Name="KasaPara" ColumnName="KasaPara" />
                 <ScalarProperty Name="KasaID" ColumnName="KasaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAlinanUrunlers">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblAlinanUrunler">
+              <MappingFragment StoreEntitySet="TblAlinanUrunler">
+                <ScalarProperty Name="AlimBitis" ColumnName="AlimBitis" />
+                <ScalarProperty Name="AlimBaslangic" ColumnName="AlimBaslangic" />
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+                <ScalarProperty Name="AlinanUrunID" ColumnName="AlinanUrunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSatilanUruns">
+            <EntityTypeMapping TypeName="BorsaOdevModel.TblSatilanUrun">
+              <MappingFragment StoreEntitySet="TblSatilanUrun">
+                <ScalarProperty Name="UrunSatisBitis" ColumnName="UrunSatisBitis" />
+                <ScalarProperty Name="UrunSatisBaslangic" ColumnName="UrunSatisBaslangic" />
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunMiktar" ColumnName="UrunMiktar" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="SaticiID" ColumnName="SaticiID" />
+                <ScalarProperty Name="SatilanurunID" ColumnName="SatilanurunID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

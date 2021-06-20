@@ -18,6 +18,7 @@ namespace BorsaOdev.DatabaseModel
         public TblSatici()
         {
             this.TblUrunOnays = new HashSet<TblUrunOnay>();
+            this.TblSatilanUruns = new HashSet<TblSatilanUrun>();
         }
     
         public int SaticiID { get; set; }
@@ -32,5 +33,7 @@ namespace BorsaOdev.DatabaseModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblUrunOnay> TblUrunOnays { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblSatilanUrun> TblSatilanUruns { get; set; }
     }
 }

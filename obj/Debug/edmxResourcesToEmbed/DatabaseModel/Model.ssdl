@@ -38,6 +38,25 @@
     <Property Name="AlimBitis" Type="date" />
     <Property Name="UrunFiyat" Type="int" />
   </EntityType>
+  <EntityType Name="TblAlinanUrunler">
+    <Key>
+      <PropertyRef Name="AlinanUrunID" />
+    </Key>
+    <Property Name="AlinanUrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AliciID" Type="int" />
+    <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+    <Property Name="UrunMiktar" Type="int" />
+    <Property Name="UrunFiyat" Type="int" />
+    <Property Name="AlimBaslangic" Type="date" />
+    <Property Name="AlimBitis" Type="date" />
+  </EntityType>
+  <EntityType Name="TblKasa">
+    <Key>
+      <PropertyRef Name="KasaID" />
+    </Key>
+    <Property Name="KasaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KasaPara" Type="int" />
+  </EntityType>
   <EntityType Name="TblKullanici">
     <Key>
       <PropertyRef Name="KullaniciID" />
@@ -75,6 +94,18 @@
     <Property Name="Adres" Type="nchar" MaxLength="10" />
     <Property Name="kullaniciad" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="TblSatilanUrun">
+    <Key>
+      <PropertyRef Name="SatilanurunID" />
+    </Key>
+    <Property Name="SatilanurunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaticiID" Type="int" />
+    <Property Name="UrunAdi" Type="nchar" MaxLength="10" />
+    <Property Name="UrunMiktar" Type="int" />
+    <Property Name="UrunFiyat" Type="int" />
+    <Property Name="UrunSatisBaslangic" Type="date" />
+    <Property Name="UrunSatisBitis" Type="date" />
+  </EntityType>
   <EntityType Name="TblUrun">
     <Key>
       <PropertyRef Name="UrunID" />
@@ -111,6 +142,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TblAlinanUrunler_TblAlici">
+    <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
+    <End Role="TblAlinanUrunler" Type="Self.TblAlinanUrunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAlici">
+        <PropertyRef Name="AliciID" />
+      </Principal>
+      <Dependent Role="TblAlinanUrunler">
+        <PropertyRef Name="AliciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblParaOnay_TblAlici">
     <End Role="TblAlici" Type="Self.TblAlici" Multiplicity="0..1" />
     <End Role="TblParaOnay" Type="Self.TblParaOnay" Multiplicity="*" />
@@ -120,6 +163,18 @@
       </Principal>
       <Dependent Role="TblParaOnay">
         <PropertyRef Name="aliciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblSatilanUrun_TblSatici">
+    <End Role="TblSatici" Type="Self.TblSatici" Multiplicity="0..1" />
+    <End Role="TblSatilanUrun" Type="Self.TblSatilanUrun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblSatici">
+        <PropertyRef Name="SaticiID" />
+      </Principal>
+      <Dependent Role="TblSatilanUrun">
+        <PropertyRef Name="SaticiID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -139,18 +194,29 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblAlici" EntityType="Self.TblAlici" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblAlimİstek" EntityType="Self.TblAlimİstek" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblAlinanUrunler" EntityType="Self.TblAlinanUrunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKasa" EntityType="Self.TblKasa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblParaOnay" EntityType="Self.TblParaOnay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblSatici" EntityType="Self.TblSatici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSatilanUrun" EntityType="Self.TblSatilanUrun" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblUrunOnay" EntityType="Self.TblUrunOnay" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_TblAlimİstek_TblAlici" Association="Self.FK_TblAlimİstek_TblAlici">
       <End Role="TblAlici" EntitySet="TblAlici" />
       <End Role="TblAlimİstek" EntitySet="TblAlimİstek" />
     </AssociationSet>
+    <AssociationSet Name="FK_TblAlinanUrunler_TblAlici" Association="Self.FK_TblAlinanUrunler_TblAlici">
+      <End Role="TblAlici" EntitySet="TblAlici" />
+      <End Role="TblAlinanUrunler" EntitySet="TblAlinanUrunler" />
+    </AssociationSet>
     <AssociationSet Name="FK_TblParaOnay_TblAlici" Association="Self.FK_TblParaOnay_TblAlici">
       <End Role="TblAlici" EntitySet="TblAlici" />
       <End Role="TblParaOnay" EntitySet="TblParaOnay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblSatilanUrun_TblSatici" Association="Self.FK_TblSatilanUrun_TblSatici">
+      <End Role="TblSatici" EntitySet="TblSatici" />
+      <End Role="TblSatilanUrun" EntitySet="TblSatilanUrun" />
     </AssociationSet>
     <AssociationSet Name="FK_TblUrunOnay_TblSatici" Association="Self.FK_TblUrunOnay_TblSatici">
       <End Role="TblSatici" EntitySet="TblSatici" />

@@ -45,11 +45,10 @@ namespace BorsaOdev.Alıcı
             this.txturunmiktar = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.lblurunad = new System.Windows.Forms.Label();
-            this.lblurunmiktar = new System.Windows.Forms.Label();
-            this.lblurunfiyat = new System.Windows.Forms.Label();
-            this.satisbitis = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -73,7 +72,7 @@ namespace BorsaOdev.Alıcı
             // 
             // btnparaekle
             // 
-            this.btnparaekle.Location = new System.Drawing.Point(32, 64);
+            this.btnparaekle.Location = new System.Drawing.Point(65, 78);
             this.btnparaekle.Name = "btnparaekle";
             this.btnparaekle.Size = new System.Drawing.Size(100, 23);
             this.btnparaekle.TabIndex = 5;
@@ -193,15 +192,34 @@ namespace BorsaOdev.Alıcı
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnparaekle);
             this.groupBox2.Controls.Add(this.txtalicipara);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(12, 159);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(158, 105);
+            this.groupBox2.Size = new System.Drawing.Size(298, 140);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Alıcı Para İşlemleri";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(65, 51);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Para Tipi: ";
             // 
             // dataGridView2
             // 
@@ -212,52 +230,22 @@ namespace BorsaOdev.Alıcı
             this.dataGridView2.TabIndex = 22;
             this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick_1);
             // 
-            // lblurunad
+            // button1
             // 
-            this.lblurunad.AutoSize = true;
-            this.lblurunad.Location = new System.Drawing.Point(177, 170);
-            this.lblurunad.Name = "lblurunad";
-            this.lblurunad.Size = new System.Drawing.Size(40, 13);
-            this.lblurunad.TabIndex = 23;
-            this.lblurunad.Text = "urunad";
-            // 
-            // lblurunmiktar
-            // 
-            this.lblurunmiktar.AutoSize = true;
-            this.lblurunmiktar.Location = new System.Drawing.Point(177, 186);
-            this.lblurunmiktar.Name = "lblurunmiktar";
-            this.lblurunmiktar.Size = new System.Drawing.Size(66, 13);
-            this.lblurunmiktar.TabIndex = 24;
-            this.lblurunmiktar.Text = "lnlurunmiktar";
-            // 
-            // lblurunfiyat
-            // 
-            this.lblurunfiyat.AutoSize = true;
-            this.lblurunfiyat.Location = new System.Drawing.Point(177, 204);
-            this.lblurunfiyat.Name = "lblurunfiyat";
-            this.lblurunfiyat.Size = new System.Drawing.Size(47, 13);
-            this.lblurunfiyat.TabIndex = 25;
-            this.lblurunfiyat.Text = "urunifyat";
-            this.lblurunfiyat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // satisbitis
-            // 
-            this.satisbitis.AutoSize = true;
-            this.satisbitis.Location = new System.Drawing.Point(177, 223);
-            this.satisbitis.Name = "satisbitis";
-            this.satisbitis.Size = new System.Drawing.Size(56, 13);
-            this.satisbitis.TabIndex = 26;
-            this.satisbitis.Text = "lblsatisbitis";
+            this.button1.Location = new System.Drawing.Point(801, 200);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Alım Yap";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Alici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 311);
-            this.Controls.Add(this.satisbitis);
-            this.Controls.Add(this.lblurunfiyat);
-            this.Controls.Add(this.lblurunmiktar);
-            this.Controls.Add(this.lblurunad);
+            this.ClientSize = new System.Drawing.Size(967, 311);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -270,7 +258,6 @@ namespace BorsaOdev.Alıcı
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -292,9 +279,8 @@ namespace BorsaOdev.Alıcı
         private System.Windows.Forms.DateTimePicker baslangic;
         private System.Windows.Forms.TextBox txturunfiyat;
         private System.Windows.Forms.TextBox txturunadi;
-        private System.Windows.Forms.Label lblurunad;
-        private System.Windows.Forms.Label lblurunmiktar;
-        private System.Windows.Forms.Label lblurunfiyat;
-        private System.Windows.Forms.Label satisbitis;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

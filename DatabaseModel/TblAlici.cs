@@ -19,6 +19,7 @@ namespace BorsaOdev.DatabaseModel
         {
             this.TblParaOnays = new HashSet<TblParaOnay>();
             this.TblAlimİstek = new HashSet<TblAlimİstek>();
+            this.TblAlinanUrunlers = new HashSet<TblAlinanUrunler>();
         }
     
         public int AliciID { get; set; }
@@ -37,5 +38,7 @@ namespace BorsaOdev.DatabaseModel
         public virtual ICollection<TblParaOnay> TblParaOnays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblAlimİstek> TblAlimİstek { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblAlinanUrunler> TblAlinanUrunlers { get; set; }
     }
 }

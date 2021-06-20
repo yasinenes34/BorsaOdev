@@ -34,3 +34,8 @@ C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\obj\Debug\BorsaOdev.csproj.Cor
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\obj\Debug\BorsaOdev.csproj.CopyComplete
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\obj\Debug\BorsaOdev.exe
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\obj\Debug\BorsaOdev.pdb
+C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\EPPlus.dll
+C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\EPPlus.xml
+C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
