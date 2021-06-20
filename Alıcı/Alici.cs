@@ -234,9 +234,9 @@ namespace BorsaOdev.Alıcı
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel Dosyası|*.xlsx";
             saveFileDialog.ShowDialog();
-            Stream stream = saveFileDialog.OpenFile();
-            package.SaveAs(stream);
-            stream.Close();
+            Stream stream1 = saveFileDialog.OpenFile();
+            package.SaveAs(stream1);
+            stream1.Close();
             MessageBox.Show("Rapor Oluşturuldu");
         }
 
