@@ -1,13 +1,16 @@
 ﻿using BorsaOdev.DatabaseModel;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace BorsaOdev.Satıcı
 {
@@ -105,7 +108,7 @@ namespace BorsaOdev.Satıcı
                             satilanUrun.SaticiID = item.SaticiID;
                             satilanUrun.UrunAdi = item.UrunAdi;
                             satilanUrun.UrunFiyat = item.UrunFiyat;
-                            satilanUrun.UrunMiktar = item.UrunMiktar;
+                            satilanUrun.UrunMiktar = i.UrunMiktar;
                             satilanUrun.UrunSatisBaslangic = item.UrunSatisBaslangic;
                             satilanUrun.UrunSatisBitis = item.UrunSatisBitis;
                             db.TblSatilanUruns.Add(satilanUrun);
@@ -126,6 +129,43 @@ namespace BorsaOdev.Satıcı
 
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RaporOlustur();
+        }
+        void RaporOlustur()
+        {
+            int Satir = 1;
+            int Sutun = 1;
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.Commercial;
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            ExcelPackage package = new ExcelPackage();
+            package.Workbook.Worksheets.Add("Sayfa1");
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
+            worksheet.Cells[Satir, Sutun].Value = "ÜrünAdı";
+            worksheet.Cells[Satir, Sutun + 1].Value = "ÜrünMiktar";
+            worksheet.Cells[Satir, Sutun + 2].Value = "ÜrünFiyat";
+            worksheet.Cells[Satir, Sutun + 3].Value = "Ürün Satım Başlangıç Tarihi";
+            worksheet.Cells[Satir, Sutun + 4].Value = "Ürün Satım Bitiş Tarihi";
+            var satilanUrunler = db.TblSatilanUruns.Where(p => p.TblSatici.kullaniciad == Form1.kullaniciadi).ToList();
+            foreach (var item in satilanUrunler)
+            {
+                worksheet.Cells[Satir + 1, Sutun].Value = item.UrunAdi;
+                worksheet.Cells[Satir + 1, Sutun + 1].Value = item.UrunMiktar;
+                worksheet.Cells[Satir + 1, Sutun + 2].Value = item.UrunFiyat;
+                worksheet.Cells[Satir + 1, Sutun + 3].Value = item.UrunSatisBaslangic;
+                worksheet.Cells[Satir + 1, Sutun + 4].Value = item.UrunSatisBitis;
+                Satir++;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Dosyası|*.xlsx";
+            saveFileDialog.ShowDialog();
+            Stream stream = saveFileDialog.OpenFile();
+            package.SaveAs(stream);
+            stream.Close();
+            MessageBox.Show("Rapor Oluşturuldu");
         }
     }
 }

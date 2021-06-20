@@ -177,7 +177,7 @@ namespace BorsaOdev.Alıcı
                             satilanUrun.SaticiID = item.SaticiID;
                             satilanUrun.UrunAdi = item.UrunAdi;
                             satilanUrun.UrunFiyat = item.UrunFiyat;
-                            satilanUrun.UrunMiktar = item.UrunMiktar;
+                            satilanUrun.UrunMiktar = i.UrunMiktar;
                             satilanUrun.UrunSatisBaslangic = item.UrunSatisBaslangic;
                             satilanUrun.UrunSatisBitis = item.UrunSatisBitis;
                             db.TblSatilanUruns.Add(satilanUrun);
