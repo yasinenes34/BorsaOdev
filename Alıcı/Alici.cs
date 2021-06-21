@@ -35,7 +35,7 @@ namespace BorsaOdev.Alıcı
             comboBox1.Items.Add("İNGİLİZ STERLİNİ");
             comboBox1.Items.Add("TL");
             
-           MessageBox.Show(USD.ToString());
+           
 
         }
 
@@ -44,17 +44,20 @@ namespace BorsaOdev.Alıcı
             paraekle();
         }
         int para;
-
+        
         void paraekle()
         {
             TblParaOnay alicionay = new TblParaOnay();
             var alici= db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).FirstOrDefault();
-            if (comboBox1.Text=="Dolar")
+            if (comboBox1.Text == "Dolar")
             {
                 para = int.Parse(txtalicipara.Text);
-                float sonpara = float.Parse( USD.ToString());
+                float sonpara = float.Parse(USD.ToString());
+                MessageBox.Show(sonpara.ToString());
+                MessageBox.Show(USD.ToString());
                 alicionay.aliciID = alici.AliciID;
-                alicionay.AliciPara = para *int.Parse(sonpara.ToString());
+                alicionay.AliciPara = para * int.Parse(sonpara.ToString());
+                MessageBox.Show(alicionay.AliciPara.ToString());
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
                 MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
@@ -139,7 +142,7 @@ namespace BorsaOdev.Alıcı
                 {
                     if (item.UrunAdi == i.UrunAdi && item.UrunFiyat == i.UrunFiyat && item.UrunMiktar >= i.UrunMiktar && item.UrunSatisBitis >= i.AlimBitis)
                     {
-                        int uruntoplamfiyat = int.Parse(item.UrunMiktar.ToString()) * int.Parse(item.UrunFiyat.ToString());
+                        int uruntoplamfiyat = int.Parse(i.UrunMiktar.ToString()) * int.Parse(item.UrunFiyat.ToString());
                         if (para1 > uruntoplamfiyat + (uruntoplamfiyat / 100))
                         {
                             int idalim = i.AlimID;
@@ -189,6 +192,10 @@ namespace BorsaOdev.Alıcı
                             bitir = true;
                            
                         }
+                        else
+                        {
+                            MessageBox.Show("Paranız Yetersizdir...");
+                        }
                         break;
                     }
                    
@@ -205,6 +212,19 @@ namespace BorsaOdev.Alıcı
         private void button1_Click(object sender, EventArgs e)
         {
             RaporOlustur();
+        }
+
+        private void btnurunListele_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = db.TblUruns.ToList();
+        }
+
+        private void btn_cikis_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+
         }
 
         void RaporOlustur()
@@ -227,8 +247,8 @@ namespace BorsaOdev.Alıcı
                 worksheet.Cells[Satir+1, Sutun].Value = item.UrunAdi;
                 worksheet.Cells[Satir+1, Sutun + 1].Value = item.UrunMiktar;
                 worksheet.Cells[Satir+1, Sutun + 2].Value = item.UrunFiyat;
-                worksheet.Cells[Satir+1, Sutun + 3].Value = item.AlimBaslangic;
-                worksheet.Cells[Satir+1, Sutun + 4].Value = item.AlimBitis;
+                worksheet.Cells[Satir+1, Sutun + 3].Value = item.AlimBaslangic.ToString();
+                worksheet.Cells[Satir+1, Sutun + 4].Value = item.AlimBitis.ToString();  
                 Satir++;               
             }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -237,6 +257,7 @@ namespace BorsaOdev.Alıcı
             Stream stream1 = saveFileDialog.OpenFile();
             package.SaveAs(stream1);
             stream1.Close();
+            
             MessageBox.Show("Rapor Oluşturuldu");
         }
 

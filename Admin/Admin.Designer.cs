@@ -55,6 +55,8 @@ namespace BorsaOdev.admin
             this.label2 = new System.Windows.Forms.Label();
             this.brncikis = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btn_saticiListele = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,9 +75,9 @@ namespace BorsaOdev.admin
             // 
             // btnUrunonay
             // 
-            this.btnUrunonay.Location = new System.Drawing.Point(300, 45);
+            this.btnUrunonay.Location = new System.Drawing.Point(306, 62);
             this.btnUrunonay.Name = "btnUrunonay";
-            this.btnUrunonay.Size = new System.Drawing.Size(97, 31);
+            this.btnUrunonay.Size = new System.Drawing.Size(118, 31);
             this.btnUrunonay.TabIndex = 1;
             this.btnUrunonay.Text = "Ürün Onay";
             this.btnUrunonay.UseVisualStyleBackColor = true;
@@ -99,6 +101,7 @@ namespace BorsaOdev.admin
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_saticiListele);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.txturunid);
             this.groupBox1.Controls.Add(this.label8);
@@ -118,14 +121,14 @@ namespace BorsaOdev.admin
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 170);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(403, 158);
+            this.groupBox1.Size = new System.Drawing.Size(424, 158);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Satıcı İşlemleri";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(197, 14);
+            this.button2.Location = new System.Drawing.Point(180, 25);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 31);
             this.button2.TabIndex = 15;
@@ -231,16 +234,17 @@ namespace BorsaOdev.admin
             // 
             // btnsatici
             // 
-            this.btnsatici.Location = new System.Drawing.Point(300, 13);
+            this.btnsatici.Location = new System.Drawing.Point(306, 25);
             this.btnsatici.Name = "btnsatici";
-            this.btnsatici.Size = new System.Drawing.Size(97, 31);
+            this.btnsatici.Size = new System.Drawing.Size(118, 31);
             this.btnsatici.TabIndex = 4;
-            this.btnsatici.Text = "Satıcı Listele";
+            this.btnsatici.Text = "Yeni Ürünler Listele";
             this.btnsatici.UseVisualStyleBackColor = true;
             this.btnsatici.Click += new System.EventHandler(this.btnsatici_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.btnalici);
             this.groupBox2.Controls.Add(this.txtaliciid);
             this.groupBox2.Controls.Add(this.button1);
@@ -254,11 +258,11 @@ namespace BorsaOdev.admin
             // 
             // btnalici
             // 
-            this.btnalici.Location = new System.Drawing.Point(186, 19);
+            this.btnalici.Location = new System.Drawing.Point(162, 11);
             this.btnalici.Name = "btnalici";
-            this.btnalici.Size = new System.Drawing.Size(97, 31);
+            this.btnalici.Size = new System.Drawing.Size(112, 37);
             this.btnalici.TabIndex = 4;
-            this.btnalici.Text = "Alıcı Listele";
+            this.btnalici.Text = "Alıcı Yeni Para Listele";
             this.btnalici.UseVisualStyleBackColor = true;
             this.btnalici.Click += new System.EventHandler(this.btnalici_Click);
             // 
@@ -300,17 +304,40 @@ namespace BorsaOdev.admin
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.Pink;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(0, 1);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(755, 150);
             this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick);
+            // 
+            // btn_saticiListele
+            // 
+            this.btn_saticiListele.Location = new System.Drawing.Point(180, 62);
+            this.btn_saticiListele.Name = "btn_saticiListele";
+            this.btn_saticiListele.Size = new System.Drawing.Size(97, 31);
+            this.btn_saticiListele.TabIndex = 16;
+            this.btn_saticiListele.Text = "Satıcı Listele";
+            this.btn_saticiListele.UseVisualStyleBackColor = true;
+            this.btn_saticiListele.Click += new System.EventHandler(this.btn_saticiListele_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(162, 51);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 31);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Alıcı Listele";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(757, 340);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.brncikis);
@@ -358,5 +385,7 @@ namespace BorsaOdev.admin
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btn_saticiListele;
+        private System.Windows.Forms.Button button3;
     }
 }

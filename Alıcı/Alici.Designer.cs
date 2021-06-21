@@ -33,6 +33,7 @@ namespace BorsaOdev.Alıcı
             this.txtalicipara = new System.Windows.Forms.TextBox();
             this.btnparaekle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnurunListele = new System.Windows.Forms.Button();
             this.txturunfiyat = new System.Windows.Forms.TextBox();
             this.txturunadi = new System.Windows.Forms.TextBox();
             this.bitis = new System.Windows.Forms.DateTimePicker();
@@ -49,6 +50,7 @@ namespace BorsaOdev.Alıcı
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_cikis = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -82,6 +84,7 @@ namespace BorsaOdev.Alıcı
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnurunListele);
             this.groupBox1.Controls.Add(this.txturunfiyat);
             this.groupBox1.Controls.Add(this.txturunadi);
             this.groupBox1.Controls.Add(this.bitis);
@@ -99,6 +102,16 @@ namespace BorsaOdev.Alıcı
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alım İşlemleri";
+            // 
+            // btnurunListele
+            // 
+            this.btnurunListele.Location = new System.Drawing.Point(287, 99);
+            this.btnurunListele.Name = "btnurunListele";
+            this.btnurunListele.Size = new System.Drawing.Size(100, 23);
+            this.btnurunListele.TabIndex = 28;
+            this.btnurunListele.Text = "Ürün Listele";
+            this.btnurunListele.UseVisualStyleBackColor = true;
+            this.btnurunListele.Click += new System.EventHandler(this.btnurunListele_Click);
             // 
             // txturunfiyat
             // 
@@ -223,28 +236,43 @@ namespace BorsaOdev.Alıcı
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.Pink;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(0, 3);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(786, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(825, 150);
             this.dataGridView2.TabIndex = 22;
             this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick_1);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(801, 200);
+            this.button1.BackColor = System.Drawing.Color.Maroon;
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(725, 179);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.Size = new System.Drawing.Size(100, 94);
             this.button1.TabIndex = 28;
             this.button1.Text = "Rapor Al";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_cikis
+            // 
+            this.btn_cikis.Location = new System.Drawing.Point(725, 279);
+            this.btn_cikis.Name = "btn_cikis";
+            this.btn_cikis.Size = new System.Drawing.Size(100, 23);
+            this.btn_cikis.TabIndex = 29;
+            this.btn_cikis.Text = "Çıkış Yap";
+            this.btn_cikis.UseVisualStyleBackColor = true;
+            this.btn_cikis.Click += new System.EventHandler(this.btn_cikis_Click);
             // 
             // Alici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 311);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(844, 311);
+            this.Controls.Add(this.btn_cikis);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox2);
@@ -282,5 +310,7 @@ namespace BorsaOdev.Alıcı
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnurunListele;
+        private System.Windows.Forms.Button btn_cikis;
     }
 }

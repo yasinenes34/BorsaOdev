@@ -155,8 +155,8 @@ namespace BorsaOdev.Satıcı
                 worksheet.Cells[Satir + 1, Sutun].Value = item.UrunAdi;
                 worksheet.Cells[Satir + 1, Sutun + 1].Value = item.UrunMiktar;
                 worksheet.Cells[Satir + 1, Sutun + 2].Value = item.UrunFiyat;
-                worksheet.Cells[Satir + 1, Sutun + 3].Value = item.UrunSatisBaslangic;
-                worksheet.Cells[Satir + 1, Sutun + 4].Value = item.UrunSatisBitis;
+                worksheet.Cells[Satir + 1, Sutun + 3].Value = item.UrunSatisBaslangic.ToString();
+                worksheet.Cells[Satir + 1, Sutun + 4].Value = item.UrunSatisBitis.ToString();
                 Satir++;
             }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -166,6 +166,24 @@ namespace BorsaOdev.Satıcı
             package.SaveAs(stream);
             stream.Close();
             MessageBox.Show("Rapor Oluşturuldu");
+        }
+
+        private void btnurunListele_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = db.TblSatilanUruns.Where(x=>x.TblSatici.kullaniciad==Form1.kullaniciadi).ToList();
+        }
+
+        private void btn_listele_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = db.TblUruns.ToList();
+
+        }
+
+        private void btn_Cikis_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
         }
     }
 }

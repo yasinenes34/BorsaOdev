@@ -101,7 +101,11 @@ namespace BorsaOdev.admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-           dataGridView1.DataSource= db.TblUruns.ToList();
+            dataGridView2.Visible = false;
+            dataGridView2.Enabled = false;
+            dataGridView1.Visible = true;
+            dataGridView1.Enabled = true;
+            dataGridView1.DataSource= db.TblUruns.ToList();
         }
         public int para;
         public int paraonayid;
@@ -126,6 +130,29 @@ namespace BorsaOdev.admin
             var x = db.TblParaOnays.Find(paraonayid);
             db.TblParaOnays.Remove(x);
 
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btn_saticiListele_Click(object sender, EventArgs e)
+        {
+            dataGridView2.Visible = false;
+            dataGridView2.Enabled = false;
+            dataGridView1.Visible = true;
+            dataGridView1.Enabled = true;
+            dataGridView1.DataSource = db.TblSaticis.ToList();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView2.Visible = false;
+            dataGridView2.Enabled = false;
+            dataGridView1.Visible = true;
+            dataGridView1.Enabled = true;
+            dataGridView1.DataSource = db.TblAlicis.ToList();
         }
     }
 }
