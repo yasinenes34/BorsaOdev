@@ -42,6 +42,7 @@ namespace BorsaOdev.Alıcı
         private void btnparaekle_Click(object sender, EventArgs e)
         {
             paraekle();
+
         }
         int para;
 
@@ -52,32 +53,36 @@ namespace BorsaOdev.Alıcı
             if (comboBox1.Text=="Dolar")
             {
                 para = int.Parse(txtalicipara.Text);
-                float sonpara = float.Parse( USD.ToString());
                 alicionay.aliciID = alici.AliciID;
-                alicionay.AliciPara = para *int.Parse(sonpara.ToString());
+                Double doviz = double.Parse(USD.ToString());
+                int para1 = (int)doviz;
+                alicionay.AliciPara = para * para1;
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
-                MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
+                MessageBox.Show("{0} USD Eklendi Admin Onayı Bekleniyor", para.ToString());
             }
             else if (comboBox1.Text=="Euro")
             {
                 para = int.Parse(txtalicipara.Text);
-                float sonpara = float.Parse(USD.ToString());
+               
                 alicionay.aliciID = alici.AliciID;
-                alicionay.AliciPara = para * int.Parse(sonpara.ToString());
+                Double doviz = double.Parse(EUR.ToString());
+                int para1 = (int)doviz;
+                alicionay.AliciPara = para * para1;
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
-                MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
+                MessageBox.Show("{0} Euro Eklendi Admin Onayı Bekleniyor",para.ToString());
             }
-            else if (comboBox1.Text=="GBP")
+            else if (comboBox1.Text== "İNGİLİZ STERLİNİ")
             {
                 para = int.Parse(txtalicipara.Text);
-                float sonpara = float.Parse(USD.ToString());
                 alicionay.aliciID = alici.AliciID;
-                alicionay.AliciPara = para * int.Parse(sonpara.ToString());
+                Double doviz = double.Parse(GBP.ToString());
+                int para1 = (int)doviz;
+                alicionay.AliciPara = para * para1;
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
-                MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
+                MessageBox.Show("{} GBP Eklendi Admin Onayı Bekleniyor", para.ToString());
             }
             else
             {
@@ -89,6 +94,19 @@ namespace BorsaOdev.Alıcı
                 MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
             }
           
+        }
+        void deneme()
+        {
+            if (comboBox1.Text=="Dolar")
+            {
+                Double doviz =double.Parse( USD.ToString());
+               int para =(int)doviz;
+                MessageBox.Show(para.ToString());
+                MessageBox.Show(doviz.ToString());
+                MessageBox.Show((para + 25).ToString());
+
+            }
+           
         }
         private void btnalim_Click(object sender, EventArgs e)
         {
