@@ -27,15 +27,15 @@ namespace BorsaOdev.Alıcı
             string dovizlink = "https://www.tcmb.gov.tr/kurlar/today.xml";
             var XmlDosya = new XmlDocument();
             XmlDosya.Load(dovizlink);
-             USD = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='USD']/BanknoteSelling").InnerXml;
-             EUR = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='EUR']/BanknoteSelling").InnerXml;
-             GBP = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='GBP']/BanknoteSelling").InnerXml;
+            USD = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='USD']/BanknoteSelling").InnerXml;
+            EUR = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='EUR']/BanknoteSelling").InnerXml;
+            GBP = XmlDosya.SelectSingleNode("Tarih_Date/Currency[@Kod='GBP']/BanknoteSelling").InnerXml;
             comboBox1.Items.Add("Dolar");
             comboBox1.Items.Add("Euro");
             comboBox1.Items.Add("İNGİLİZ STERLİNİ");
             comboBox1.Items.Add("TL");
-            
-           
+
+
 
         }
 
@@ -45,37 +45,33 @@ namespace BorsaOdev.Alıcı
 
         }
         int para;
-        
         void paraekle()
         {
             TblParaOnay alicionay = new TblParaOnay();
-            var alici= db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).FirstOrDefault();
+            var alici = db.TblAlicis.Where(x => x.kullaniciad == Form1.kullaniciadi).FirstOrDefault();
             if (comboBox1.Text == "Dolar")
             {
                 para = int.Parse(txtalicipara.Text);
-                float sonpara = float.Parse(USD.ToString());
-                MessageBox.Show(sonpara.ToString());
-                MessageBox.Show(USD.ToString());
-                alicionay.aliciID = alici.AliciID;
-                alicionay.AliciPara = para * int.Parse(sonpara.ToString());
-                MessageBox.Show(alicionay.AliciPara.ToString());
+                Double doviz = double.Parse(USD.ToString());
+                int para1 = (int)doviz;
+                alicionay.AliciPara = para * para1;
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
                 MessageBox.Show("{0} USD Eklendi Admin Onayı Bekleniyor", para.ToString());
             }
-            else if (comboBox1.Text=="Euro")
+            else if (comboBox1.Text == "Euro")
             {
                 para = int.Parse(txtalicipara.Text);
-               
+
                 alicionay.aliciID = alici.AliciID;
                 Double doviz = double.Parse(EUR.ToString());
                 int para1 = (int)doviz;
                 alicionay.AliciPara = para * para1;
                 db.TblParaOnays.Add(alicionay);
                 db.SaveChanges();
-                MessageBox.Show("{0} Euro Eklendi Admin Onayı Bekleniyor",para.ToString());
+                MessageBox.Show("{0} Euro Eklendi Admin Onayı Bekleniyor", para.ToString());
             }
-            else if (comboBox1.Text== "İNGİLİZ STERLİNİ")
+            else if (comboBox1.Text == "İNGİLİZ STERLİNİ")
             {
                 para = int.Parse(txtalicipara.Text);
                 alicionay.aliciID = alici.AliciID;
@@ -95,21 +91,10 @@ namespace BorsaOdev.Alıcı
                 db.SaveChanges();
                 MessageBox.Show("Para Eklendi Admin Onayı Bekleniyor");
             }
-          
-        }
-        void deneme()
-        {
-            if (comboBox1.Text=="Dolar")
-            {
-                Double doviz =double.Parse( USD.ToString());
-               int para =(int)doviz;
-                MessageBox.Show(para.ToString());
-                MessageBox.Show(doviz.ToString());
-                MessageBox.Show((para + 25).ToString());
 
-            }
-           
         }
+
+
         private void btnalim_Click(object sender, EventArgs e)
         {
             alimistek();
@@ -135,7 +120,7 @@ namespace BorsaOdev.Alıcı
 
         }
         public int para1;
-        void  alimkontrolet()
+        void alimkontrolet()
         {
             //TblUrun urun = new TblUrun();
             var urun = db.TblUruns.ToList();
@@ -148,7 +133,7 @@ namespace BorsaOdev.Alıcı
                     para1 = int.Parse(item.AliciPara.ToString());
                 }
             }
-            bool bitir=false;
+            bool bitir = false;
             foreach (var item in urun)
             {
                 if (bitir)
@@ -164,16 +149,16 @@ namespace BorsaOdev.Alıcı
                         {
                             int idalim = i.AlimID;
                             int idurun = item.UrunID;
-                            int aliciid =int.Parse( i.Aliciid.ToString());
+                            int aliciid = int.Parse(i.Aliciid.ToString());
                             int saticiid = int.Parse(item.SaticiID.ToString());
                             var silalim = db.TblAlimİstek.Find(idalim);
                             var silurun = db.TblUruns.Find(idurun);
-                            var aliciparaguncelle = db.TblAlicis.Where(p => p.AliciID ==aliciid).First<TblAlici>();
+                            var aliciparaguncelle = db.TblAlicis.Where(p => p.AliciID == aliciid).First<TblAlici>();
                             var saticiparaguncelle = db.TblSaticis.Where(p => p.SaticiID == saticiid).First<TblSatici>();
                             var kasaguncelle = db.TblKasas.Where(p => p.KasaID == 1).First<TblKasa>();
                             var urunmiktarguncelle = db.TblUruns.Where(p => p.UrunID == idurun).First<TblUrun>();
                             kasaguncelle.KasaPara += (uruntoplamfiyat * 1) / 100;
-                            if (saticiparaguncelle.SaticiPara==null)
+                            if (saticiparaguncelle.SaticiPara == null)
                             {
                                 saticiparaguncelle.SaticiPara = 0;
                             }
@@ -202,12 +187,12 @@ namespace BorsaOdev.Alıcı
                             satilanUrun.UrunSatisBitis = item.UrunSatisBitis;
                             db.TblSatilanUruns.Add(satilanUrun);
                             saticiparaguncelle.SaticiPara += uruntoplamfiyat;
-                            aliciparaguncelle.AliciPara -= uruntoplamfiyat+(uruntoplamfiyat/100);
+                            aliciparaguncelle.AliciPara -= uruntoplamfiyat + (uruntoplamfiyat / 100);
                             db.TblAlimİstek.Remove(silalim);
                             db.SaveChanges();
                             MessageBox.Show("Satış Gerçekleşti");
                             bitir = true;
-                           
+
                         }
                         else
                         {
@@ -215,11 +200,11 @@ namespace BorsaOdev.Alıcı
                         }
                         break;
                     }
-                   
+
 
                 }
-                
-                
+
+
             }
 
 
@@ -261,12 +246,12 @@ namespace BorsaOdev.Alıcı
             var alinanUrunler = db.TblAlinanUrunlers.Where(p => p.TblAlici.kullaniciad == Form1.kullaniciadi).ToList();
             foreach (var item in alinanUrunler)
             {
-                worksheet.Cells[Satir+1, Sutun].Value = item.UrunAdi;
-                worksheet.Cells[Satir+1, Sutun + 1].Value = item.UrunMiktar;
-                worksheet.Cells[Satir+1, Sutun + 2].Value = item.UrunFiyat;
-                worksheet.Cells[Satir+1, Sutun + 3].Value = item.AlimBaslangic.ToString();
-                worksheet.Cells[Satir+1, Sutun + 4].Value = item.AlimBitis.ToString();  
-                Satir++;               
+                worksheet.Cells[Satir + 1, Sutun].Value = item.UrunAdi;
+                worksheet.Cells[Satir + 1, Sutun + 1].Value = item.UrunMiktar;
+                worksheet.Cells[Satir + 1, Sutun + 2].Value = item.UrunFiyat;
+                worksheet.Cells[Satir + 1, Sutun + 3].Value = item.AlimBaslangic.ToString();
+                worksheet.Cells[Satir + 1, Sutun + 4].Value = item.AlimBitis.ToString();
+                Satir++;
             }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel Dosyası|*.xlsx";
@@ -274,14 +259,14 @@ namespace BorsaOdev.Alıcı
             Stream stream1 = saveFileDialog.OpenFile();
             package.SaveAs(stream1);
             stream1.Close();
-            
+
             MessageBox.Show("Rapor Oluşturuldu");
         }
 
         private void dataGridView2_CellMouseDoubleClick_1(object sender, DataGridViewCellMouseEventArgs e)
         {
-           
+
         }
-       
+
     }
 }
