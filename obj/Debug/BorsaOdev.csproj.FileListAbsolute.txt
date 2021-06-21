@@ -39,3 +39,8 @@ C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\Microsoft.IO.Recycla
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\System.ComponentModel.Annotations.dll
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\EPPlus.xml
 C:\Users\cihat\gitHub\RestaurantWebSite\BorsaOdev\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\super\source\repos\BorsaOdev\BorsaOdev\bin\Debug\EPPlus.dll
+C:\Users\super\source\repos\BorsaOdev\BorsaOdev\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\super\source\repos\BorsaOdev\BorsaOdev\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\super\source\repos\BorsaOdev\BorsaOdev\bin\Debug\EPPlus.xml
+C:\Users\super\source\repos\BorsaOdev\BorsaOdev\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
